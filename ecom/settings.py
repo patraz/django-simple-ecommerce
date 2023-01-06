@@ -37,6 +37,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+NOTIFY_EMAIL = env('NOTIFY_EMAIL')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'core'
+    'crispy_forms',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -108,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
