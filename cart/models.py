@@ -114,7 +114,7 @@ class Order(models.Model):
 
     def get_total(self):
         total = self.get_raw_total()
-        return "{:.2f}".format(total / 100)
+        return "{:.2f}".format(total / 100) 
 
 
 class Payment(models.Model):
