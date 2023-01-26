@@ -104,9 +104,10 @@ class CheckoutView(generic.FormView):
             'selected_shipping_address')
         selected_billing_address = form.cleaned_data.get(
             'selected_billing_address')
-
+        print(order, selected_billing_address, selected_shipping_address, sep='\n')
         if selected_shipping_address:
             order.shipping_address = selected_shipping_address
+            
         else:
             address = Address.objects.create(
                 address_type='S',

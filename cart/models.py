@@ -86,8 +86,8 @@ class Order(models.Model):
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
 
-    billing_adress = models.ForeignKey(Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)
-    shipping_adress = models.ForeignKey(Address, related_name='shipping_adress', blank=True, null=True, on_delete=models.SET_NULL)
+    billing_address = models.ForeignKey(Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)
+    shipping_address = models.ForeignKey(Address, related_name='shipping_adress', blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.reference_number

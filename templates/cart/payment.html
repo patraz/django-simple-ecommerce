@@ -17,10 +17,10 @@
         width: 64px;
         height: 64px;
         margin: 8px;
-        border: 8px solid rgb(99, 153, 208);
+        border: 8px solid rgb(155, 81, 81);
         border-radius: 50%;
         animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: rgb(99, 153, 208) transparent transparent transparent;
+        border-color: rgb(155, 81, 81) transparent transparent transparent;
     }
 
     .lds-ring div:nth-child(1) {
@@ -46,10 +46,9 @@
     }
 </style>
 
-
-<div class="container">
+<div class='container'>
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="alert alert-success" role="alert" id="alertSuccess" style="display: none;">
                 Your payment was successful.
             </div>
@@ -65,7 +64,7 @@
                     <div></div>
                 </div>
             </div>
-             
+
             <div id='paymentInfo'>
                 <p>Order total: ${{ order.get_total }}</p>
                 <h4>Select a payment method</h4>
@@ -76,15 +75,13 @@
 </div>
 {% endblock content %}
 
+
 {% block scripts %}
 
-  <!-- Replace "test" with your own sandbox Business account app client ID -->
-  <script 
-    src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}&currency=USD">
-  </script>
-  <!-- Set up a container element for the button -->
+<script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}">
+</script>
 
-  <script>
+<script>
 
     const loader = document.getElementById('loader');
     const paymentInfo = document.getElementById('paymentInfo');
@@ -156,4 +153,3 @@
 </script>
 
 {% endblock scripts %}
-
