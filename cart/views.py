@@ -6,8 +6,10 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
 from .forms import AddToCartForm, AddressForm
-from .models import Product, OrderItem, Address, Payment
+from .models import Product, OrderItem, Address, Payment, Order
 from .utils import get_or_set_order_session
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 class ProductListView(generic.ListView):
@@ -177,3 +179,7 @@ class ConfirmOrderView(generic.View):
 class ThankYouView(generic.TemplateView):
     template_name = 'cart/thanks.html'
     
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = 'order.html'
+    queryset = Order.objects.all()
+    context_object_name = 'order'

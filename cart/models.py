@@ -62,6 +62,13 @@ class Product(models.Model):
     def get_price(self):
         return "{:.2f}".format(self.price / 100)
 
+    def get_delete_url(self):
+        return reverse("staff:product-delete", kwargs={'pk': self.pk})
+
+    def get_update_url(self):
+        return reverse("staff:product-update", kwargs={'pk': self.pk})
+
+
 class OrderItem(models.Model):
     order = models.ForeignKey("Order", related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
