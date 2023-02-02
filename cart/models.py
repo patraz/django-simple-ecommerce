@@ -41,6 +41,12 @@ class SizeVariation(models.Model):
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(unique=True)
@@ -52,6 +58,9 @@ class Product(models.Model):
     active = models.BooleanField(default=False)
     avaliable_colours = models.ManyToManyField(ColourVariation)
     avaliable_sizes = models.ManyToManyField(SizeVariation)
+    primary_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='primary_products')
+    secondary_categories = models.ManyToManyField(Category, blank=True)
+    stock = models.IntegerField(default=0)
 
 
     def __str__(self):
@@ -68,6 +77,9 @@ class Product(models.Model):
     def get_update_url(self):
         return reverse("staff:product-update", kwargs={'pk': self.pk})
 
+    @property
+    def in_stock(self):
+        return self.stock > 0
 
 class OrderItem(models.Model):
     order = models.ForeignKey("Order", related_name='items', on_delete=models.CASCADE)
